@@ -1,0 +1,20 @@
+From: Santiago Vila <sanvila@debian.org>
+Subject: Changed formisc.c so that formail -n actually works
+Bug-Debian: http://bugs.debian.org/151627
+X-Debian-version: 3.22-16 
+
+--- a/src/formisc.c
++++ b/src/formisc.c
+@@ -183,10 +183,10 @@
+ 		 retval=excode;
+ 	    }					       /* reap some children */
+ 	while(childlimit&&children>=childlimit||(child=fork())==-1&&children)
+-	   for(--children;(excode=waitfor((pid_t)0))!=NO_PROCESS;)
++	   for(--children;(excode=waitfor((pid_t)0))!=NO_PROCESS;--children)
+ 	    { if(excode!=EXIT_SUCCESS)
+ 		 retval=excode;
+-	      if(--children<=maxchild)
++	      if(children<=maxchild)
+ 		 break;
+ 	    }
+       }

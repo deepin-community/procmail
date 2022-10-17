@@ -1,0 +1,15 @@
+From: Santiago Vila <sanvila@debian.org>
+Subject: Do not touch /var/mail during build
+X-Debian-version: 3.10.7-3
+
+--- a/src/recommend.c
++++ b/src/recommend.c
+@@ -47,7 +47,7 @@
+      printf("chmod %lo %s\n",(unsigned long)(sgid|PERMIS),argv[2]);
+   else if(chmdir==1)
+      goto nogchmod;
+-  if(chmdir)
++  if(0)
+      printf("chmod %c+w %s/.\n",chmdir==1?'g':'a',mailspooldir);
+ nogchmod:
+   return EXIT_SUCCESS;

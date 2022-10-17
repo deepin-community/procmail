@@ -1,0 +1,24 @@
+From: Santiago Vila <sanvila@debian.org>
+Subject: The example .forward for exim in procmail(1) is |/usr/bin/procmail
+Bug-Debian: http://bugs.debian.org/33460
+Bug-Debian: http://bugs.debian.org/37771
+X-Debian-version: 3.13.1-2
+
+--- a/man/procmail.man
++++ b/man/procmail.man
+@@ -723,6 +723,15 @@
+ .fi
+ .ad
+ .PP
++Some mailers (notably exim) do not currently accept the above syntax.
++In such case use this instead:
++.PP
++.na
++.nf
++|/usr/bin/procmail
++.fi
++.ad
++.PP
+ Procmail can also be invoked to postprocess an already filled system
+ mailbox.  This can be useful if you don't want to or can't use a
+ $HOME/@DOT_FORWARD@ file (in which case the following script could
